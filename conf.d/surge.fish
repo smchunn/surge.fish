@@ -11,7 +11,6 @@ set --query surge_color_git_behind || set --global surge_color_git_behind green
 set --query surge_color_error || set --global surge_color_error red
 set --query surge_color_prompt || set --global surge_color_prompt blue
 set --query surge_color_duration || set --global surge_color_duration yellow
-set --query surge_color_start || set --global surge_color_start green
 set --query surge_symbol_prompt || set --global surge_symbol_prompt '❯ '
 set --query surge_symbol_git_branch || set --global surge_symbol_git_branch ' '
 set --query surge_symbol_git_ahead || set --global surge_symbol_git_ahead ' '
@@ -113,7 +112,7 @@ end
 
 set --global surge_color_normal (set_color normal)
 
-for color in surge_color_{pwd,git,git_branch,git_branch_clean,git_branch_dirty,git_ahead,git_behind,error,prompt,duration,start}
+for color in surge_color_{pwd,git,git_branch,git_branch_clean,git_branch_dirty,git_ahead,git_behind,error,prompt,duration}
   function $color --on-variable $color --inherit-variable color
     set --query $color && set --global _$color (set_color $$color)
   end && $color
