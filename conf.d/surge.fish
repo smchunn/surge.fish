@@ -49,12 +49,13 @@ function __surge_postexec --on-event fish_postexec
 
   for code in $last_status
     if test $code -ne 0
-      set prompt_status "$_surge_color_error"(echo $last_status)
+      set prompt_status "$_surge_color_error"(echo $last_status)"$_surge_newline"
       break
     end
   end
 
-  set --global _surge_prompt "$_surge_color_prompt$prompt_status$_surge_newline$surge_symbol_prompt"
+  set --global _surge_status "$_surge_color_prompt$prompt_status"
+
   test "$CMD_DURATION" -lt $surge_cmd_duration_threshold && set _surge_cmd_duration && return
 
   set --local secs (math --scale=1 $CMD_DURATION/1000 % 60)
@@ -66,14 +67,15 @@ function __surge_postexec --on-event fish_postexec
   test $hours -gt 0 && set --local --append out $hours"h"
   test $mins -gt 0 && set --local --append out $mins"m"
   test $secs -gt 0 && set --local --append out $secs"s"
-  set --query out && set --local out "$_surge_color_duration$out "
+  set --local out "$_surge_color_duration$out "
 
-  set --query out && set --global _surge_prompt "$out$_surge_prompt"
+  set --global _surge_cmd_duration $out
+  set --query prompt_status || set --global _surge_status "$_surge_status$_surge_newline"
 
 end
 
 function __surge_prompt --on-event fish_prompt
-  set --query _surge_prompt || set --global _surge_prompt "$_surge_newline$_surge_color_prompt$surge_symbol_prompt"
+  set --query _surge_prompt || set --global _surge_prompt "$_surge_color_prompt$surge_symbol_prompt"
   set --query _surge_pwd || __surge_pwd
 
   command kill $_surge_last_pid 2>/dev/null
@@ -127,7 +129,7 @@ end && surge_multiline
 
 
 function surge_prompt
-  set -l lprompt "$_surge_prompt$surge_color_normal"
+  set -l lprompt "$_surge_cmd_duration$_surge_status$_surge_prompt$surge_color_normal"
 
   echo -e $lprompt
 end
