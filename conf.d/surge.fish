@@ -12,9 +12,9 @@ set --query surge_color_error || set --global surge_color_error red
 set --query surge_color_prompt || set --global surge_color_prompt blue
 set --query surge_color_duration || set --global surge_color_duration yellow
 set --query surge_symbol_prompt || set --global surge_symbol_prompt '❯ '
-set --query surge_symbol_git_branch || set --global surge_symbol_git_branch ' '
-set --query surge_symbol_git_ahead || set --global surge_symbol_git_ahead ' '
-set --query surge_symbol_git_behind || set --global surge_symbol_git_behind ' '
+set --query surge_symbol_git_branch || set --global surge_symbol_git_branch '•'
+set --query surge_symbol_git_ahead || set --global surge_symbol_git_ahead '↑'
+set --query surge_symbol_git_behind || set --global surge_symbol_git_behind '↓'
 set --query surge_multiline || set --global surge_multiline false
 set --query surge_cmd_duration_threshold || set --global surge_cmd_duration_threshold 1000
 
