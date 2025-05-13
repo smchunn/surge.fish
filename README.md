@@ -2,8 +2,6 @@
 
 > Customizable prompt with async Git status for [Fish](https://fishshell.com).
 
-[!](#surge)
-
 ## Inspiration
 
 `surge` is inspired by and uses code from [hydro](https://github.com/jorgebucaran/hydro), an ultra-pure, lag-free Fish prompt. We extend gratitude to the `hydro` project for its foundational contributions.
@@ -109,4 +107,5 @@ Set variables using `set --universal` from the command line or `set --global` in
 ## License
 
 [MIT License](LICENSE) © [smchunn]
+
 [MIT License](https://github.com/jorgebucaran/hydro/blob/main/LICENSE.md) © [Jorge Bucaran]
