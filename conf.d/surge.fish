@@ -22,12 +22,11 @@ function $_surge_git --on-variable $_surge_git
   commandline --function repaint
 end
 
-function __surge_pwd --on-variable PWD --on-variable surge_ignored_git_paths --on-variable fish_prompt_pwd_dir_length
+function __surge_pwd --on-variable PWD --on-variable surge_ignored_git_paths
   set --local git_root (command git --no-optional-locks rev-parse --show-toplevel 2>/dev/null)
   set --local git_base (string replace --all --regex -- "^.*/" "" "$git_root")
   set --local path_sep /
 
-  test "$fish_prompt_pwd_dir_length" = 0 && set path_sep
 
   if set --query git_root[1] && ! contains -- $git_root $surge_ignored_git_paths
     set --erase _surge_skip_git_prompt
