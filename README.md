@@ -14,51 +14,51 @@ Install with [Fisher](https://github.com/jorgebucaran/fisher):
 fisher install smchunn/surge.fish
 ```
 
-> default config requires nerd-font
-
 ## Features
 
 A sleek, single prompt symbol to guide your workflow. [Customize it](#configuration)?
 
 ```
-
+❯
 ```
 
 Display Git branch name and status with asynchronous prompt repaints!
 
 ```
-
+surge.fish • main
 ```
 
 Track commits ahead or behind your upstream with async updates!
 
 ```
-
+surge.fish • main 1↑1↓
 ```
 
 Show [`$CMD_DURATION`](https://fishshell.com/docs/current/language.html?highlight=cmd_duration#envvar-CMD_DURATION) for commands taking longer than `1` second. [Configurable](#configuration).
 
 ```
-
+8.1s ❯
 ```
 
 Highlight the last non-zero [exit status](https://fishshell.com/docs/current/tutorial.html#exit-status) from [`$pipestatus`](https://fishshell.com/docs/current/language.html?highlight=cmd_duration#envvar-pipestatus).
 
 ```
-
+❯ false
+1❯ false | false
+1 1❯
 ```
 
-Smart [`$PWD`](https://fishshell.com/docs/current/language.html?highlight=cmd_duration#envvar-PWD) truncation, showing the basename or Git repository root.
+<!-- Smart [`$PWD`](https://fishshell.com/docs/current/language.html?highlight=cmd_duration#envvar-PWD) truncation, showing the basename or Git repository root. -->
+<!---->
+<!-- ``` -->
+<!---->
+<!-- ``` -->
 
-```
-
-```
-
-## Performance
-
-```
-
-```
+<!-- ## Performance -->
+<!---->
+<!-- ``` -->
+<!---->
+<!-- ``` -->
 
 ## Configuration
 
@@ -69,9 +69,9 @@ Set variables using `set --universal` from the command line or `set --global` in
 | Variable                  | Type   | Description                | Default |
 | ------------------------- | ------ | -------------------------- | ------- |
 | `surge_symbol_prompt`     | string | Prompt symbol.             | `❯`     |
-| `surge_symbol_git_branch` | string | Git branch symbol.         | ``     |
-| `surge_symbol_git_ahead`  | string | Ahead of upstream symbol.  | ``     |
-| `surge_symbol_git_behind` | string | Behind of upstream symbol. | ``     |
+| `surge_symbol_git_branch` | string | Git branch symbol.         | `•`     |
+| `surge_symbol_git_ahead`  | string | Ahead of upstream symbol.  | `↑`     |
+| `surge_symbol_git_behind` | string | Behind of upstream symbol. | `↓`     |
 
 ### Colors
 
