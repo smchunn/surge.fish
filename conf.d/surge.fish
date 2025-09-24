@@ -95,7 +95,8 @@ function __surge_prompt --on-event fish_prompt
       set -l hasremote \$status
       command git rev-list --count --left-right @{upstream}...@ 2>/dev/null | read behind ahead
 
-      test \$hasremote -eq 0 && test \$ahead -gt 0 && set upstream \"$_surge_color_git_ahead\$ahead$surge_symbol_git_ahead\"
+      set -l upstream
+      test \$hasremote -eq 0 && test \$ahead -gt 0 && set upstream \"\$upstream$_surge_color_git_ahead\$ahead$surge_symbol_git_ahead\"
       test \$hasremote -eq 0 && test \$behind -gt 0 && set upstream \"\$upstream$_surge_color_git_behind\$behind$surge_symbol_git_behind\"
       set --query upstream && set upstream \" \$upstream\"
 
