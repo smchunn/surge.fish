@@ -151,7 +151,7 @@ function surge_git
   echo -e $rprompt
 end
 
-if string match -q "tmux-256color" "$TERM"
+if string match -q "tmux-256color" "$TERM" || string match -q "wezterm" "$TERM"
   function fish_prompt
     surge_prompt
   end
