@@ -17,6 +17,7 @@ set --query surge_symbol_git_ahead || set --global surge_symbol_git_ahead '↑'
 set --query surge_symbol_git_behind || set --global surge_symbol_git_behind '↓'
 set --query surge_multiline || set --global surge_multiline false
 set --query surge_cmd_duration_threshold || set --global surge_cmd_duration_threshold 1000
+set --query surge_term || set --global surge_term ""
 
 function $_surge_git --on-variable $_surge_git
   commandline --function repaint
@@ -151,7 +152,7 @@ function surge_git
   echo -e $rprompt
 end
 
-if string match -q "tmux-256color" "$TERM" || string match -q "wezterm" "$TERM"
+if string match -qr "$TERM|\*" $surge_term
   function fish_prompt
     surge_prompt
   end
