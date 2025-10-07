@@ -155,7 +155,7 @@ end
 function __surge_setup_prompt --on-variable surge_term
   # If surge_term is empty or *, use surge for all terminals
   # Otherwise, only use surge if $TERM matches the pattern in surge_term
-  if test -z "$surge_term" || test "$surge_term" = "*" || string match -qr "$surge_term" "$TERM"
+  if string match -qr "$TERM|\*" $surge_term
     function fish_prompt
       surge_prompt
     end
