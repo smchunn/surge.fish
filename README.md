@@ -14,6 +14,7 @@ fisher install smchunn/surge.fish
 - **Git status**: `surge.fish • main 1↑1↓` (async updates)
 - **Command duration**: `8.1s ❯` (configurable threshold)
 - **Exit status**: `1❯` (highlights non-zero exits)
+- **Clean shell exit**: cancels its own async Git worker instead of leaving an active job warning
 
 ## Configuration
 
@@ -53,6 +54,8 @@ All colors accept [`set_color`](https://fishshell.com/docs/current/cmds/set_colo
 | `surge_multiline` | Display prompt on separate line | `false` |
 | `surge_ignored_git_paths` | Space-separated paths to exclude Git info | `""` |
 | `surge_cmd_duration_threshold` | Minimum duration (ms) to display | `1000` |
+
+When Fish exits, surge cancels any in-flight async Git worker so the shell can close on the first `exit` without an active job warning.
 
 ## License
 

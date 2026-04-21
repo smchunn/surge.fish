@@ -73,11 +73,21 @@ function __surge_postexec --on-event fish_postexec
 
 end
 
+function __surge_stop_git_worker
+  if set --query _surge_last_pid
+    if command kill -0 $_surge_last_pid 2>/dev/null
+      command kill $_surge_last_pid 2>/dev/null
+    end
+
+    set --erase _surge_last_pid
+  end
+end
+
 function __surge_prompt --on-event fish_prompt
   set --query _surge_prompt || set --global _surge_prompt "$_surge_color_prompt$surge_symbol_prompt"
   set --query _surge_pwd || __surge_pwd
 
-  command kill $_surge_last_pid 2>/dev/null
+  __surge_stop_git_worker
 
   set --query _surge_skip_git_prompt && set $_surge_git && return
   fish --private --command "
@@ -115,9 +125,11 @@ function __surge_prompt --on-event fish_prompt
   " &
 
   set --global _surge_last_pid $last_pid
+  disown $_surge_last_pid 2>/dev/null
 end
 
 function __surge_fish_exit --on-event fish_exit
+  __surge_stop_git_worker
   set --erase $_surge_git
 end
 
